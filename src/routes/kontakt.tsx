@@ -258,7 +258,7 @@ function KontaktPage() {
       {/* SUBTITLE */}
       <section className="bg-white text-center my-[80px]" style={{ padding: "64px 24px 48px" }}>
         <p
-          className="mx-auto"
+          className="bg-white text-center my-[79px]"
           style={{ fontSize: 14, color: "#555555", lineHeight: 1.72, maxWidth: 860 }}
         >
           Potrebujete pomôcť s automatizáciou inzerátov, zvýšením ich dosahu
