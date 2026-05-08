@@ -372,12 +372,6 @@ function KontaktPage() {
             </div>
           </div>
 
-          {/* Desktop overlap positioning */}
-          <style>{`
-            @media (min-width: 1024px) {
-              .kontakt-form-card { position: absolute; left: 1000px; top: 12px; }
-            }
-          `}</style>
         </div>
       </section>
 
