@@ -588,7 +588,7 @@ function KontaktPage() {
         className="relative"
         style={{ background: "#ffffff", padding: "40px 24px 80px" }}
       >
-        {/* Blur overlay background */}
+        {/* Two smaller blur halos positioned in the gaps between text columns */}
         <img
           src={blurImg}
           alt=""
@@ -596,9 +596,24 @@ function KontaktPage() {
           style={{
             position: "absolute",
             top: "50%",
-            left: "50%",
+            left: "28%",
             transform: "translate(-50%, -50%)",
-            width: "min(1200px, 100%)",
+            width: "min(420px, 36%)",
+            height: "auto",
+            zIndex: 0,
+            pointerEvents: "none",
+          }}
+        />
+        <img
+          src={blurImg}
+          alt=""
+          aria-hidden
+          style={{
+            position: "absolute",
+            top: "50%",
+            left: "60%",
+            transform: "translate(-50%, -50%)",
+            width: "min(420px, 36%)",
             height: "auto",
             zIndex: 0,
             pointerEvents: "none",
