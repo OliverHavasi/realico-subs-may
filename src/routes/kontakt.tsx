@@ -218,7 +218,7 @@ function KontaktPage() {
             className="kontakt-photo-wrap absolute pointer-events-none select-none"
             style={{
               bottom: -60,
-              height: 442,
+              height: 486,
               width: "auto",
               zIndex: 5,
             }}
