@@ -595,7 +595,7 @@ function KontaktPage() {
           style={{
             position: "absolute",
             top: "50%",
-            left: "calc(47% - 250px)",
+            left: "calc(47% - 200px)",
             transform: "translate(-50%, -50%)",
             width: "min(880px, 70%)",
             height: "auto",
