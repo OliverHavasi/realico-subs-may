@@ -248,7 +248,7 @@ function KontaktPage() {
       </div>
 
       {/* SUBTITLE */}
-      <section className="bg-white text-center" style={{ padding: "64px 24px 48px" }}>
+      <section className="bg-white text-center my-[80px]" style={{ padding: "64px 24px 48px" }}>
         <p
           className="mx-auto"
           style={{ fontSize: 14, color: "#555555", lineHeight: 1.72, maxWidth: 860 }}
