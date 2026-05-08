@@ -25,7 +25,7 @@ export function SiteHeader({ variant = "light" }: { variant?: "light" | "dark" }
           <img
             src={onYellow ? logo_white : logo_light}
             alt="Realico"
-            className="h-9 w-auto"
+            className="h-8 w-auto"
           />
         </Link>
         <nav className={`hidden md:flex flex-1 items-center justify-between rounded-full px-1 py-1 shadow-sm ${navBg}`}>
@@ -33,7 +33,7 @@ export function SiteHeader({ variant = "light" }: { variant?: "light" | "dark" }
             <Link
               key={l.to}
               to={l.to}
-              className={`flex-1 px-6 py-3.5 text-[13px] font-bold rounded-full transition-colors flex items-center justify-center min-h-[52px] ${linkBase}`}
+              className={`flex-1 px-6 py-2.5 text-[13px] font-bold rounded-full transition-colors flex items-center justify-center min-h-[42px] ${linkBase}`}
               activeOptions={{ exact: l.to === "/" }}
             >
               {l.type === "image" ? (

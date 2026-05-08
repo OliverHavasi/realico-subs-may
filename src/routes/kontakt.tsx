@@ -194,13 +194,20 @@ function KontaktPage() {
           className="relative w-full"
           style={{ height: 510, background: "#F3C300", overflow: "visible" }}
         >
-          {/* z=1 doodles - single image fitted inside hero */}
+          {/* z=1 doodles - single image fitted inside hero (scaled +20%) */}
           <img
             src={bgIcons}
             alt=""
             aria-hidden
             className="pointer-events-none absolute inset-0 h-full w-full select-none"
-            style={{ objectFit: "contain", objectPosition: "center", zIndex: 1, opacity: 1 }}
+            style={{
+              objectFit: "contain",
+              objectPosition: "center",
+              zIndex: 1,
+              opacity: 1,
+              transform: "scale(1.2)",
+              transformOrigin: "center",
+            }}
           />
 
           {/* z=5 woman photo - straight bottom edge sits on hero/body boundary */}
@@ -211,7 +218,7 @@ function KontaktPage() {
             className="kontakt-photo-wrap absolute pointer-events-none select-none"
             style={{
               bottom: -60,
-              height: 520,
+              height: 442,
               width: "auto",
               zIndex: 5,
             }}
