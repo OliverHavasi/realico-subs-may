@@ -6,7 +6,8 @@ import { Check } from "lucide-react";
 import photo from "@/assets/kontakt/kontakt_photo.png";
 import bgIcons from "@/assets/kontakt/kontakt_bgr_icons.png";
 import plane from "@/assets/kontakt/kontakt_plane.svg";
-import mapImg from "@/assets/kontakt/kontakt_map.png";
+import mapImg from "@/assets/kontakt/kontakt_map.jpg";
+import blurImg from "@/assets/kontakt/kontakt_blur.png";
 import logoBlack from "@/assets/brand/realico_logo_b_y_dot.svg";
 
 export const Route = createFileRoute("/kontakt")({
@@ -33,20 +34,20 @@ const TABS = ["Telefonicky", "E-mailom", "Osobné stretnutie"] as const;
 type Tab = (typeof TABS)[number];
 
 const SUBJECTS = [
-  { value: "reklama", label: "Reklama na Realico" },
-  { value: "partnerstvo", label: "Partnerstvo" },
-  { value: "investicie", label: "Investičné možnosti" },
-  { value: "technicka", label: "Technická podpora" },
-  { value: "ine", label: "Iné" },
+  "Reklama na Realico",
+  "Partnerstvo",
+  "Investičné možnosti",
+  "Technická podpora",
+  "Iné",
 ];
 
 type Errors = Partial<Record<"name" | "email" | "message" | "agreed", boolean>>;
 
 const SELECT_BG =
-  "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23999' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E\")";
+  "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23999' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E\")";
 
 function KontaktPage() {
-  const [activeTab, setActiveTab] = useState<Tab>("Osobné stretnutie");
+  const [tab, setTab] = useState<Tab>("Osobné stretnutie");
   const [form, setForm] = useState({
     name: "",
     company: "",
@@ -56,7 +57,7 @@ function KontaktPage() {
     message: "",
   });
   const [agreed, setAgreed] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
+  const [sent, setSent] = useState(false);
   const [errors, setErrors] = useState<Errors>({});
 
   const set =
@@ -82,7 +83,7 @@ function KontaktPage() {
       setErrors(ne);
       return;
     }
-    setSubmitted(true);
+    setSent(true);
   };
 
   const reset = () => {
@@ -96,15 +97,16 @@ function KontaktPage() {
     });
     setAgreed(false);
     setErrors({});
-    setSubmitted(false);
+    setSent(false);
+    setTab("Osobné stretnutie");
   };
 
   const inputBase: React.CSSProperties = {
-    background: "#F2F2F2",
+    background: "#F5F5F5",
     border: "1.5px solid transparent",
-    borderRadius: 10,
-    height: 52,
-    padding: "0 16px",
+    borderRadius: 7.5,
+    height: 48,
+    padding: "0 14px",
     fontFamily: "inherit",
     fontSize: 13.5,
     color: "#111111",
@@ -121,50 +123,54 @@ function KontaktPage() {
         .k-input:focus {
           border-color: #F3C300 !important;
           background: #ffffff !important;
-          box-shadow: 0 0 0 3px rgba(243,195,0,0.18);
+          box-shadow: 0 0 0 3px rgba(243,195,0,0.15);
         }
         .k-input.k-error { border-color: #ff4444 !important; }
         .k-select {
           appearance: none;
           background-image: ${SELECT_BG};
           background-repeat: no-repeat;
-          background-position: right 16px center;
-          padding-right: 40px !important;
+          background-position: right 14px center;
+          padding-right: 36px !important;
           cursor: pointer;
+          color: ${form.subject ? "#111111" : "#AAAAAA"};
         }
         .k-checkbox {
           appearance: none;
-          width: 18px; height: 18px;
+          width: 17px; height: 17px;
           border: 1.5px solid #CCCCCC;
           border-radius: 4px;
-          background: #F2F2F2;
+          background: #F5F5F5;
           cursor: pointer;
           flex-shrink: 0;
           position: relative;
           transition: background 0.15s, border-color 0.15s;
         }
-        .k-checkbox:checked {
-          background: #F3C300;
-          border-color: #F3C300;
-        }
+        .k-checkbox:checked { background: #F3C300; border-color: #F3C300; }
         .k-checkbox:checked::after {
           content: "";
           position: absolute;
-          left: 3px; top: 4px;
-          width: 10px; height: 6px;
+          left: 3px; top: 3px;
+          width: 9px; height: 5px;
           border-left: 2px solid #fff;
           border-bottom: 2px solid #fff;
           transform: rotate(-45deg);
         }
         @keyframes k-pulse {
           0%, 100% { transform: scale(1); }
-          50% { transform: scale(1.2); }
+          50% { transform: scale(1.18); }
         }
         .k-checkbox.k-error { border-color: #ff4444; animation: k-pulse 0.4s ease; }
 
-        .kontakt-hero-photo { right: max(calc((100vw - 1200px) / 2 - 60px), -40px); }
-        .kontakt-headline { left: max(calc((100vw - 1200px) / 2), 24px); }
+        .kontakt-headline { left: max(40px, calc((100vw - 1200px) / 2)); }
+        .kontakt-photo-wrap { right: max(calc((100vw - 1200px) / 2 - 60px), -40px); }
         .kontakt-plane { left: calc((100vw - 1200px) / 2 + 200px); }
+
+        .k-submit:hover:not(:disabled) {
+          background: #1a1a1a !important;
+          transform: translateY(-1px);
+          box-shadow: 0 6px 20px rgba(0,0,0,0.22);
+        }
 
         @media (max-width: 1023px) {
           .kontakt-form-card-wrap {
@@ -175,87 +181,84 @@ function KontaktPage() {
             margin: 16px auto 0;
           }
           .kontakt-map-container { height: 420px !important; }
+          .k-headline { font-size: 32px !important; max-width: 320px !important; }
         }
       `}</style>
 
-      <SiteHeader variant="light" />
+      {/* HERO OUTER (overflow visible so plane straddles boundary) */}
+      <div className="relative w-full" style={{ overflow: "visible" }}>
+        <SiteHeader variant="light" />
 
-      {/* HERO */}
-      <section
-        className="relative w-full"
-        style={{ height: 480, background: "#F3C300", overflow: "visible" }}
-      >
-        <div
-          className="absolute inset-0"
-          style={{ overflow: "hidden", zIndex: 1 }}
+        {/* HERO INNER */}
+        <section
+          className="relative w-full"
+          style={{ height: 480, background: "#F3C300", overflow: "hidden" }}
         >
+          {/* z=1 doodles */}
           <img
             src={bgIcons}
             alt=""
             aria-hidden
-            className="pointer-events-none h-full w-full select-none"
-            style={{ objectFit: "cover", objectPosition: "center top" }}
+            className="pointer-events-none absolute inset-0 h-full w-full select-none"
+            style={{ objectFit: "cover", objectPosition: "center top", zIndex: 1, opacity: 1 }}
           />
-        </div>
 
-        <h1
-          className="kontakt-headline absolute font-bold text-black"
-          style={{
-            top: "50%",
-            transform: "translateY(-50%)",
-            zIndex: 10,
-            maxWidth: 460,
-            fontSize: 46,
-            lineHeight: 1.14,
-            letterSpacing: "-0.022em",
-          }}
-        >
-          Začína to dialógom.
-          <br />
-          Ozvite sa nám.
-        </h1>
+          {/* z=5 woman photo */}
+          <div
+            className="kontakt-photo-wrap absolute"
+            style={{ top: 0, bottom: 0, zIndex: 5, pointerEvents: "none" }}
+          >
+            <img
+              src={photo}
+              alt=""
+              aria-hidden
+              style={{
+                position: "absolute",
+                bottom: 0,
+                right: 0,
+                height: "100%",
+                width: "auto",
+                objectFit: "contain",
+                objectPosition: "bottom right",
+              }}
+            />
+          </div>
 
-        <div
-          className="absolute"
-          style={{ top: 0, bottom: 0, right: 0, left: 0, overflow: "hidden", zIndex: 5, pointerEvents: "none" }}
-        >
-          <img
-            src={photo}
-            alt=""
-            aria-hidden
-            className="kontakt-hero-photo absolute"
+          {/* z=10 headline */}
+          <h1
+            className="kontakt-headline k-headline absolute font-bold text-black"
             style={{
-              bottom: 0,
-              height: "100%",
-              width: "auto",
-              objectFit: "contain",
-              objectPosition: "bottom center",
+              top: "50%",
+              transform: "translateY(-54%)",
+              zIndex: 10,
+              maxWidth: 460,
+              fontSize: 46,
+              fontWeight: 700,
+              lineHeight: 1.14,
+              letterSpacing: "-0.022em",
             }}
-          />
-        </div>
+          >
+            Začína to dialógom.
+            <br />
+            Ozvite sa nám.
+          </h1>
+        </section>
 
+        {/* z=30 plane straddling boundary */}
         <img
           src={plane}
           alt=""
           aria-hidden
           className="kontakt-plane absolute pointer-events-none"
-          style={{ bottom: -40, width: 130, height: "auto", zIndex: 30 }}
+          style={{ bottom: -44, width: 130, height: "auto", zIndex: 30 }}
         />
-      </section>
+      </div>
 
       {/* SUBTITLE */}
-      <section
-        className="bg-white text-center"
-        style={{ padding: "56px 24px 48px" }}
-      >
+      <section className="bg-white text-center" style={{ padding: "64px 24px 48px" }}>
         <p
           className="mx-auto"
-          style={{
-            fontSize: 14,
-            color: "#555555",
-            lineHeight: 1.72,
-            maxWidth: 860,
-          }}
+          style={{ fontSize: 14, color: "#555555", lineHeight: 1.72, maxWidth: 860 }}
         >
           Potrebujete pomôcť s automatizáciou inzerátov, zvýšením ich dosahu
           alebo máte technickú otázku?
@@ -275,7 +278,7 @@ function KontaktPage() {
           style={{
             width: "100%",
             height: 700,
-            borderRadius: 24,
+            borderRadius: 25,
             overflow: "hidden",
             background: "#e8e8e8",
           }}
@@ -326,21 +329,21 @@ function KontaktPage() {
           <div
             className="kontakt-form-card-wrap absolute"
             style={{
-              top: 28,
-              right: 28,
-              bottom: 28,
-              width: 480,
+              top: 13,
+              right: 13,
+              bottom: 13,
+              width: 490,
               zIndex: 20,
               background: "#ffffff",
-              borderRadius: 20,
+              borderRadius: 15,
               boxShadow:
                 "0 4px 40px rgba(0,0,0,0.12), 0 1px 4px rgba(0,0,0,0.06)",
-              padding: "32px 36px",
+              padding: "28px 32px",
               display: "flex",
               flexDirection: "column",
             }}
           >
-            {submitted ? (
+            {sent ? (
               <div
                 style={{
                   display: "flex",
@@ -362,11 +365,9 @@ function KontaktPage() {
                     justifyContent: "center",
                   }}
                 >
-                  <Check size={28} color="#fff" strokeWidth={3} />
+                  <Check size={24} color="#fff" strokeWidth={3} />
                 </div>
-                <h3
-                  style={{ fontSize: 20, fontWeight: 700, color: "#000", margin: 0 }}
-                >
+                <h3 style={{ fontSize: 20, fontWeight: 700, color: "#000", margin: 0 }}>
                   Ďakujeme!
                 </h3>
                 <p
@@ -396,7 +397,11 @@ function KontaktPage() {
                 </button>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} noValidate>
+              <form
+                onSubmit={handleSubmit}
+                noValidate
+                style={{ display: "flex", flexDirection: "column", height: "100%" }}
+              >
                 <p
                   style={{
                     fontSize: 13,
@@ -413,37 +418,36 @@ function KontaktPage() {
                 <div
                   style={{
                     width: "100%",
-                    height: 52,
-                    background: "#EFEFEF",
+                    height: 50,
+                    background: "#F5F5F5",
                     borderRadius: 999,
                     display: "flex",
                     alignItems: "center",
                     padding: 4,
-                    marginBottom: 22,
+                    marginBottom: 20,
+                    gap: 2,
                   }}
                 >
                   {TABS.map((t) => {
-                    const active = activeTab === t;
+                    const active = tab === t;
                     return (
                       <button
                         key={t}
                         type="button"
-                        onClick={() => setActiveTab(t)}
+                        onClick={() => setTab(t)}
                         style={{
                           flex: 1,
-                          height: 44,
+                          height: 42,
                           borderRadius: 999,
                           border: "none",
                           cursor: "pointer",
-                          fontSize: 13,
+                          fontSize: 12.5,
                           fontFamily: "inherit",
                           transition: "all 0.2s ease",
                           background: active ? "#ffffff" : "transparent",
-                          color: active ? "#000000" : "#666666",
+                          color: active ? "#111111" : "#777777",
                           fontWeight: active ? 700 : 400,
-                          boxShadow: active
-                            ? "0 2px 10px rgba(0,0,0,0.12)"
-                            : "none",
+                          boxShadow: active ? "0 2px 8px rgba(0,0,0,0.10)" : "none",
                         }}
                       >
                         {t}
@@ -453,7 +457,7 @@ function KontaktPage() {
                 </div>
 
                 {/* Row A */}
-                <div style={{ display: "flex", gap: 10 }}>
+                <div style={{ display: "flex", gap: 8 }}>
                   <input
                     className={`k-input ${errors.name ? "k-error" : ""}`}
                     style={inputBase}
@@ -477,7 +481,7 @@ function KontaktPage() {
                 </div>
 
                 {/* Row B */}
-                <div style={{ display: "flex", gap: 10, marginTop: 10 }}>
+                <div style={{ display: "flex", gap: 8, marginTop: 8 }}>
                   <input
                     className="k-input"
                     style={inputBase}
@@ -503,21 +507,15 @@ function KontaktPage() {
                 {/* Row C - Select */}
                 <select
                   className="k-input k-select"
+                  style={{ ...inputBase, marginTop: 8 }}
                   name="subject"
                   value={form.subject}
                   onChange={set("subject")}
-                  style={{
-                    ...inputBase,
-                    marginTop: 10,
-                    color: form.subject === "" ? "#AAAAAA" : "#111",
-                  }}
                 >
-                  <option value="" disabled>
-                    Vyberte predmet
-                  </option>
+                  <option value="">Vyberte predmet</option>
                   {SUBJECTS.map((s) => (
-                    <option key={s.value} value={s.value} style={{ color: "#111" }}>
-                      {s.label}
+                    <option key={s} value={s}>
+                      {s}
                     </option>
                   ))}
                 </select>
@@ -525,28 +523,30 @@ function KontaktPage() {
                 {/* Row D - Textarea */}
                 <textarea
                   className={`k-input ${errors.message ? "k-error" : ""}`}
+                  style={{
+                    ...inputBase,
+                    height: "auto",
+                    flex: 1,
+                    minHeight: 130,
+                    padding: "12px 14px",
+                    resize: "none",
+                    lineHeight: 1.6,
+                    marginTop: 8,
+                  }}
                   name="message"
                   placeholder="Vaša správa..."
                   value={form.message}
                   onChange={set("message")}
-                  maxLength={1000}
-                  style={{
-                    ...inputBase,
-                    height: 185,
-                    padding: "14px 16px",
-                    marginTop: 10,
-                    resize: "none",
-                    lineHeight: 1.6,
-                  }}
+                  maxLength={2000}
                 />
 
                 {/* Bottom row */}
                 <div
                   style={{
                     display: "flex",
-                    alignItems: "center",
                     justifyContent: "space-between",
-                    marginTop: 18,
+                    alignItems: "center",
+                    marginTop: 16,
                     gap: 12,
                   }}
                 >
@@ -554,10 +554,11 @@ function KontaktPage() {
                     style={{
                       display: "flex",
                       alignItems: "center",
-                      gap: 10,
-                      fontSize: 12,
-                      color: "#666",
+                      gap: 9,
+                      flexShrink: 0,
                       cursor: "pointer",
+                      fontSize: 12,
+                      color: "#666666",
                     }}
                   >
                     <input
@@ -574,7 +575,8 @@ function KontaktPage() {
                       Súhlasím so spracovanim{" "}
                       <a
                         href="#"
-                        style={{ color: "#000", textDecoration: "underline" }}
+                        style={{ color: "#666666", textDecoration: "underline" }}
+                        onClick={(e) => e.preventDefault()}
                       >
                         osobných údajov
                       </a>
@@ -584,135 +586,102 @@ function KontaktPage() {
 
                   <button
                     type="submit"
+                    className="k-submit"
+                    disabled={!agreed}
                     style={{
-                      background: "#000",
-                      color: "#fff",
+                      background: "#000000",
+                      color: "#ffffff",
                       border: "none",
                       borderRadius: 999,
-                      padding: "14px 32px",
+                      padding: "13px 28px",
                       fontFamily: "inherit",
-                      fontSize: 14,
+                      fontSize: 13.5,
                       fontWeight: 600,
                       cursor: agreed ? "pointer" : "not-allowed",
-                      opacity: agreed ? 1 : 0.38,
                       whiteSpace: "nowrap",
                       flexShrink: 0,
-                      transition:
-                        "background 0.2s, transform 0.15s, box-shadow 0.15s",
-                    }}
-                    onMouseEnter={(e) => {
-                      if (!agreed) return;
-                      e.currentTarget.style.background = "#1a1a1a";
-                      e.currentTarget.style.transform = "translateY(-1px)";
-                      e.currentTarget.style.boxShadow =
-                        "0 6px 20px rgba(0,0,0,0.25)";
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.background = "#000";
-                      e.currentTarget.style.transform = "none";
-                      e.currentTarget.style.boxShadow = "none";
+                      opacity: agreed ? 1 : 0.35,
+                      transition: "background 0.2s, transform 0.15s, box-shadow 0.2s, opacity 0.15s",
                     }}
                   >
                     Odoslať
                   </button>
                 </div>
-
-                <span className="sr-only">Vybraný kontakt: {activeTab}</span>
               </form>
             )}
           </div>
         </div>
       </section>
 
-      {/* CONTACT INFO CARD */}
-      <section style={{ background: "#fff", padding: "72px 40px 80px" }}>
-        <div
+      {/* CONTACT INFO */}
+      <section
+        className="relative"
+        style={{ background: "#ffffff", padding: "40px 24px 80px" }}
+      >
+        {/* Blur overlay background */}
+        <img
+          src={blurImg}
+          alt=""
+          aria-hidden
           style={{
-            maxWidth: 1240,
-            margin: "0 auto",
-            background: "#fff",
-            border: "1px solid #E8E8E8",
-            borderRadius: 20,
-            boxShadow: "0 4px 24px rgba(0,0,0,0.06)",
-            overflow: "hidden",
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            width: "min(1200px, 100%)",
+            height: "auto",
+            zIndex: 0,
+            pointerEvents: "none",
+          }}
+        />
+
+        <div
+          className="mx-auto relative"
+          style={{
+            maxWidth: 1100,
+            zIndex: 1,
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr 1fr",
+            gap: 60,
+            padding: "40px 20px",
           }}
         >
-          <div className="grid grid-cols-1 md:grid-cols-[1fr_1px_1fr_1px_1fr]">
-            <div style={{ padding: "40px 48px" }}>
-              <img
-                src={logoBlack}
-                alt="Realico"
-                style={{ height: 32, marginBottom: 20, display: "block" }}
-              />
-              <div
-                style={{
-                  fontSize: 14,
-                  lineHeight: 2,
-                  color: "#333",
-                  marginTop: 20,
-                }}
-              >
-                <p style={{ margin: 0 }}>
-                  <strong style={{ color: "#000", fontWeight: 700 }}>
-                    Email:
-                  </strong>{" "}
-                  <a href="mailto:kontak@realico.sk" style={{ color: "#333" }}>
-                    kontak@realico.sk
-                  </a>
-                </p>
-                <p style={{ margin: 0 }}>
-                  <strong style={{ color: "#000", fontWeight: 700 }}>
-                    Telefón:
-                  </strong>{" "}
-                  +421 905 905 905
-                </p>
+          {/* Col 1 */}
+          <div>
+            <img src={logoBlack} alt="Realico" style={{ height: 36, width: "auto", marginBottom: 28 }} />
+            <div style={{ fontSize: 13.5, color: "#222", lineHeight: 2 }}>
+              <div>
+                <strong style={{ fontWeight: 700 }}>Email:</strong>{" "}
+                <span style={{ color: "#444" }}>kontak@realico.sk</span>
+              </div>
+              <div>
+                <strong style={{ fontWeight: 700 }}>Telefón:</strong>{" "}
+                <span style={{ color: "#444" }}>+421 905 905 905</span>
               </div>
             </div>
-            <div
-              className="hidden md:block"
-              style={{ background: "#E8E8E8", margin: "40px 0" }}
-            />
-            <div style={{ padding: "40px 48px" }}>
-              <h3
-                style={{
-                  fontSize: 14,
-                  fontWeight: 700,
-                  color: "#000",
-                  marginBottom: 14,
-                }}
-              >
-                Prevádzkovateľ:
-              </h3>
-              <p style={{ fontSize: 14, color: "#555", lineHeight: 1.9, margin: 0 }}>
-                Proply j.s.a.
-                <br />
-                Pribinova 19276/38A
-                <br />
-                Bratislava - Ružinov 811 09
-              </p>
+          </div>
+
+          {/* Col 2 */}
+          <div>
+            <h3 style={{ fontSize: 14, fontWeight: 700, color: "#111", marginBottom: 16 }}>
+              Prevádzkovateľ:
+            </h3>
+            <div style={{ fontSize: 13.5, color: "#444", lineHeight: 2 }}>
+              <div>Proply j.s.a.</div>
+              <div>Pribinova 19276/38A</div>
+              <div>Bratislava - Ružinov 811 09</div>
             </div>
-            <div
-              className="hidden md:block"
-              style={{ background: "#E8E8E8", margin: "40px 0" }}
-            />
-            <div style={{ padding: "40px 48px" }}>
-              <h3
-                style={{
-                  fontSize: 14,
-                  fontWeight: 700,
-                  color: "#000",
-                  marginBottom: 14,
-                }}
-              >
-                Fakturačné údaje:
-              </h3>
-              <p style={{ fontSize: 14, color: "#555", lineHeight: 1.9, margin: 0 }}>
-                IČO: 50 020 161
-                <br />
-                DIČ: 21 20 153 101
-                <br />
-                IČ DPH: SK2120153101
-              </p>
+          </div>
+
+          {/* Col 3 */}
+          <div>
+            <h3 style={{ fontSize: 14, fontWeight: 700, color: "#111", marginBottom: 16 }}>
+              Fakturačné údaje:
+            </h3>
+            <div style={{ fontSize: 13.5, color: "#444", lineHeight: 2 }}>
+              <div>IČO: 50 020 161</div>
+              <div>DIČ: 21 20 153 101</div>
+              <div>IČ DPH: SK2120153101</div>
             </div>
           </div>
         </div>
