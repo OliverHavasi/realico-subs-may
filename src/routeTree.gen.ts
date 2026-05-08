@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ReklamaRouteImport } from './routes/reklama'
 import { Route as RealicoXRouteImport } from './routes/realico-x'
+import { Route as KontaktRouteImport } from './routes/kontakt'
 import { Route as BiznisSRealicoRouteImport } from './routes/biznis-s-realico'
 import { Route as IndexRouteImport } from './routes/index'
 
@@ -22,6 +23,11 @@ const ReklamaRoute = ReklamaRouteImport.update({
 const RealicoXRoute = RealicoXRouteImport.update({
   id: '/realico-x',
   path: '/realico-x',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KontaktRoute = KontaktRouteImport.update({
+  id: '/kontakt',
+  path: '/kontakt',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BiznisSRealicoRoute = BiznisSRealicoRouteImport.update({
@@ -38,12 +44,14 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/biznis-s-realico': typeof BiznisSRealicoRoute
+  '/kontakt': typeof KontaktRoute
   '/realico-x': typeof RealicoXRoute
   '/reklama': typeof ReklamaRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/biznis-s-realico': typeof BiznisSRealicoRoute
+  '/kontakt': typeof KontaktRoute
   '/realico-x': typeof RealicoXRoute
   '/reklama': typeof ReklamaRoute
 }
@@ -51,20 +59,28 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/biznis-s-realico': typeof BiznisSRealicoRoute
+  '/kontakt': typeof KontaktRoute
   '/realico-x': typeof RealicoXRoute
   '/reklama': typeof ReklamaRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/biznis-s-realico' | '/realico-x' | '/reklama'
+  fullPaths: '/' | '/biznis-s-realico' | '/kontakt' | '/realico-x' | '/reklama'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/biznis-s-realico' | '/realico-x' | '/reklama'
-  id: '__root__' | '/' | '/biznis-s-realico' | '/realico-x' | '/reklama'
+  to: '/' | '/biznis-s-realico' | '/kontakt' | '/realico-x' | '/reklama'
+  id:
+    | '__root__'
+    | '/'
+    | '/biznis-s-realico'
+    | '/kontakt'
+    | '/realico-x'
+    | '/reklama'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BiznisSRealicoRoute: typeof BiznisSRealicoRoute
+  KontaktRoute: typeof KontaktRoute
   RealicoXRoute: typeof RealicoXRoute
   ReklamaRoute: typeof ReklamaRoute
 }
@@ -83,6 +99,13 @@ declare module '@tanstack/react-router' {
       path: '/realico-x'
       fullPath: '/realico-x'
       preLoaderRoute: typeof RealicoXRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/kontakt': {
+      id: '/kontakt'
+      path: '/kontakt'
+      fullPath: '/kontakt'
+      preLoaderRoute: typeof KontaktRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/biznis-s-realico': {
@@ -105,18 +128,10 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BiznisSRealicoRoute: BiznisSRealicoRoute,
+  KontaktRoute: KontaktRoute,
   RealicoXRoute: RealicoXRoute,
   ReklamaRoute: ReklamaRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { createStart } from '@tanstack/react-start'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-  }
-}

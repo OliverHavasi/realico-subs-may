@@ -7,6 +7,7 @@ const links = [
   { to: "/", label: "Čo je Realico?", type: "text" as const },
   { to: "/realico-x", label: "Realico X", type: "image" as const, image: logo_realicox_white },
   { to: "/biznis-s-realico", label: "Biznis s Realico", type: "text" as const },
+  { to: "/kontakt", label: "Kontakt", type: "text" as const },
 ];
 
 export function SiteHeader({ variant = "light" }: { variant?: "light" | "dark" }) {
