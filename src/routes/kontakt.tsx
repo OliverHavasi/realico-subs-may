@@ -192,7 +192,7 @@ function KontaktPage() {
         {/* HERO INNER */}
         <section
           className="relative w-full"
-          style={{ height: 480, background: "#F3C300", overflow: "hidden" }}
+          style={{ height: 480, background: "#F3C300", overflow: "visible" }}
         >
           {/* z=1 doodles */}
           <img
