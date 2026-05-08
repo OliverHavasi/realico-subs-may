@@ -408,7 +408,7 @@ function KontaktPage() {
                         style={{
                           flex: 1,
                           height: 42,
-                          borderRadius: 999,
+                          borderRadius: 6,
                           border: "none",
                           cursor: "pointer",
                           fontSize: 12.5,
