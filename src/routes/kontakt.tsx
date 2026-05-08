@@ -7,6 +7,7 @@ import photo from "@/assets/kontakt/kontakt_photo.png";
 import bgIcons from "@/assets/kontakt/kontakt_bgr_icons.png";
 import plane from "@/assets/kontakt/kontakt_plane.svg";
 import mapImg from "@/assets/kontakt/kontakt_map.png";
+import logoBlack from "@/assets/brand/realico_logo_full_black.svg";
 
 export const Route = createFileRoute("/kontakt")({
   head: () => ({
