@@ -295,36 +295,6 @@ function KontaktPage() {
             }}
           />
 
-          {/* Custom map pin */}
-          <svg
-            className="absolute pointer-events-none"
-            style={{
-              left: "37%",
-              top: "48%",
-              transform: "translate(-50%, -100%)",
-              zIndex: 10,
-            }}
-            width="52"
-            height="70"
-            viewBox="0 0 52 70"
-          >
-            <path
-              d="M26,68 C26,68 2,44 2,26 a24,24 0 1,1 48,0 C50,44 26,68 26,68 Z"
-              fill="#F3C300"
-            />
-            <circle cx="26" cy="26" r="18" fill="white" />
-            <text
-              x="26"
-              y="31"
-              textAnchor="middle"
-              fontSize="13"
-              fontWeight="700"
-              fill="#000"
-            >
-              R.
-            </text>
-          </svg>
-
           {/* Form card */}
           <div
             className="kontakt-form-card-wrap absolute"
