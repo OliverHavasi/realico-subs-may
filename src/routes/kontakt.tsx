@@ -390,7 +390,7 @@ function KontaktPage() {
                     width: "100%",
                     height: 50,
                     background: "#F5F5F5",
-                    borderRadius: 999,
+                    borderRadius: 7.5,
                     display: "flex",
                     alignItems: "center",
                     padding: 4,
