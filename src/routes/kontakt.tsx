@@ -204,25 +204,18 @@ function KontaktPage() {
           />
 
           {/* z=5 woman photo - torso straddles hero/body boundary */}
-          <div
-            className="kontakt-photo-wrap absolute"
-            style={{ top: 0, bottom: -180, zIndex: 5, pointerEvents: "none" }}
-          >
-            <img
-              src={photo}
-              alt=""
-              aria-hidden
-              style={{
-                position: "absolute",
-                bottom: 0,
-                right: 0,
-                height: "100%",
-                width: "auto",
-                objectFit: "contain",
-                objectPosition: "bottom right",
-              }}
-            />
-          </div>
+          <img
+            src={photo}
+            alt=""
+            aria-hidden
+            className="kontakt-photo-wrap absolute pointer-events-none select-none"
+            style={{
+              bottom: -180,
+              height: 660,
+              width: "auto",
+              zIndex: 5,
+            }}
+          />
 
           {/* z=10 headline */}
           <h1
@@ -588,7 +581,7 @@ function KontaktPage() {
         className="relative"
         style={{ background: "#ffffff", padding: "40px 24px 80px" }}
       >
-        {/* Two smaller blur halos positioned in the gaps between text columns */}
+        {/* Blur halos (image already contains 2 halos), shifted slightly left */}
         <img
           src={blurImg}
           alt=""
@@ -596,24 +589,9 @@ function KontaktPage() {
           style={{
             position: "absolute",
             top: "50%",
-            left: "28%",
+            left: "47%",
             transform: "translate(-50%, -50%)",
-            width: "min(420px, 36%)",
-            height: "auto",
-            zIndex: 0,
-            pointerEvents: "none",
-          }}
-        />
-        <img
-          src={blurImg}
-          alt=""
-          aria-hidden
-          style={{
-            position: "absolute",
-            top: "50%",
-            left: "60%",
-            transform: "translate(-50%, -50%)",
-            width: "min(420px, 36%)",
+            width: "min(880px, 70%)",
             height: "auto",
             zIndex: 0,
             pointerEvents: "none",
