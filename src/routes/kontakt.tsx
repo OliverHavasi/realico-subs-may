@@ -192,15 +192,20 @@ function KontaktPage() {
         {/* HERO INNER */}
         <section
           className="relative w-full"
-          style={{ height: 480, background: "#F3C300", overflow: "visible" }}
+          style={{ height: 510, background: "#F3C300", overflow: "visible" }}
         >
-          {/* z=1 doodles */}
-          <img
-            src={bgIcons}
-            alt=""
+          {/* z=1 doodles - tiled smaller */}
+          <div
             aria-hidden
-            className="pointer-events-none absolute inset-0 h-full w-full select-none"
-            style={{ objectFit: "cover", objectPosition: "center top", zIndex: 1, opacity: 1 }}
+            className="pointer-events-none absolute inset-0 select-none"
+            style={{
+              backgroundImage: `url(${bgIcons})`,
+              backgroundRepeat: "repeat",
+              backgroundSize: "900px auto",
+              backgroundPosition: "center top",
+              zIndex: 1,
+              opacity: 1,
+            }}
           />
 
           {/* z=5 woman photo - straight bottom edge sits on hero/body boundary */}
@@ -210,7 +215,7 @@ function KontaktPage() {
             aria-hidden
             className="kontakt-photo-wrap absolute pointer-events-none select-none"
             style={{
-              bottom: -62,
+              bottom: -60,
               height: 520,
               width: "auto",
               zIndex: 5,
@@ -219,7 +224,7 @@ function KontaktPage() {
 
           {/* z=10 headline */}
           <h1
-            className="kontakt-headline k-headline absolute font-bold text-white"
+            className="kontakt-headline k-headline absolute font-bold"
             style={{
               top: "50%",
               transform: "translateY(-54%)",
@@ -229,9 +234,10 @@ function KontaktPage() {
               fontWeight: 700,
               lineHeight: 1.14,
               letterSpacing: "-0.022em",
+              color: "#000",
             }}
           >
-            Začína to dialógom.
+            <span style={{ color: "#fff" }}>Začína to dialógom.</span>
             <br />
             Ozvite sa nám.
           </h1>
