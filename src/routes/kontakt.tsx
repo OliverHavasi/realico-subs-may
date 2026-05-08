@@ -210,7 +210,7 @@ function KontaktPage() {
             aria-hidden
             className="kontakt-photo-wrap absolute pointer-events-none select-none"
             style={{
-              bottom: 0,
+              bottom: -62,
               height: 520,
               width: "auto",
               zIndex: 5,
