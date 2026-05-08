@@ -204,25 +204,18 @@ function KontaktPage() {
           />
 
           {/* z=5 woman photo - torso straddles hero/body boundary */}
-          <div
-            className="kontakt-photo-wrap absolute"
-            style={{ top: 0, bottom: -180, zIndex: 5, pointerEvents: "none" }}
-          >
-            <img
-              src={photo}
-              alt=""
-              aria-hidden
-              style={{
-                position: "absolute",
-                bottom: 0,
-                right: 0,
-                height: "100%",
-                width: "auto",
-                objectFit: "contain",
-                objectPosition: "bottom right",
-              }}
-            />
-          </div>
+          <img
+            src={photo}
+            alt=""
+            aria-hidden
+            className="kontakt-photo-wrap absolute pointer-events-none select-none"
+            style={{
+              bottom: -180,
+              height: 660,
+              width: "auto",
+              zIndex: 5,
+            }}
+          />
 
           {/* z=10 headline */}
           <h1
