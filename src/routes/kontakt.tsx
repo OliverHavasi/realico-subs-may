@@ -194,18 +194,13 @@ function KontaktPage() {
           className="relative w-full"
           style={{ height: 510, background: "#F3C300", overflow: "visible" }}
         >
-          {/* z=1 doodles - tiled smaller */}
-          <div
+          {/* z=1 doodles - single image fitted inside hero */}
+          <img
+            src={bgIcons}
+            alt=""
             aria-hidden
-            className="pointer-events-none absolute inset-0 select-none"
-            style={{
-              backgroundImage: `url(${bgIcons})`,
-              backgroundRepeat: "repeat",
-              backgroundSize: "900px auto",
-              backgroundPosition: "center top",
-              zIndex: 1,
-              opacity: 1,
-            }}
+            className="pointer-events-none absolute inset-0 h-full w-full select-none"
+            style={{ objectFit: "contain", objectPosition: "center", zIndex: 1, opacity: 1 }}
           />
 
           {/* z=5 woman photo - straight bottom edge sits on hero/body boundary */}
