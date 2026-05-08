@@ -203,10 +203,10 @@ function KontaktPage() {
             style={{ objectFit: "cover", objectPosition: "center top", zIndex: 1, opacity: 1 }}
           />
 
-          {/* z=5 woman photo */}
+          {/* z=5 woman photo - torso straddles hero/body boundary */}
           <div
             className="kontakt-photo-wrap absolute"
-            style={{ top: 0, bottom: 0, zIndex: 5, pointerEvents: "none" }}
+            style={{ top: 0, bottom: -180, zIndex: 5, pointerEvents: "none" }}
           >
             <img
               src={photo}
