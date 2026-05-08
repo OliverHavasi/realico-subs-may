@@ -192,7 +192,7 @@ function KontaktPage() {
         {/* HERO INNER */}
         <section
           className="relative w-full"
-          style={{ height: 480, background: "#F3C300", overflow: "hidden" }}
+          style={{ height: 480, background: "#F3C300", overflow: "visible" }}
         >
           {/* z=1 doodles */}
           <img
@@ -203,10 +203,10 @@ function KontaktPage() {
             style={{ objectFit: "cover", objectPosition: "center top", zIndex: 1, opacity: 1 }}
           />
 
-          {/* z=5 woman photo */}
+          {/* z=5 woman photo - torso straddles hero/body boundary */}
           <div
             className="kontakt-photo-wrap absolute"
-            style={{ top: 0, bottom: 0, zIndex: 5, pointerEvents: "none" }}
+            style={{ top: 0, bottom: -180, zIndex: 5, pointerEvents: "none" }}
           >
             <img
               src={photo}
@@ -294,36 +294,6 @@ function KontaktPage() {
               display: "block",
             }}
           />
-
-          {/* Custom map pin */}
-          <svg
-            className="absolute pointer-events-none"
-            style={{
-              left: "37%",
-              top: "48%",
-              transform: "translate(-50%, -100%)",
-              zIndex: 10,
-            }}
-            width="52"
-            height="70"
-            viewBox="0 0 52 70"
-          >
-            <path
-              d="M26,68 C26,68 2,44 2,26 a24,24 0 1,1 48,0 C50,44 26,68 26,68 Z"
-              fill="#F3C300"
-            />
-            <circle cx="26" cy="26" r="18" fill="white" />
-            <text
-              x="26"
-              y="31"
-              textAnchor="middle"
-              fontSize="13"
-              fontWeight="700"
-              fill="#000"
-            >
-              R.
-            </text>
-          </svg>
 
           {/* Form card */}
           <div
@@ -420,7 +390,7 @@ function KontaktPage() {
                     width: "100%",
                     height: 50,
                     background: "#F5F5F5",
-                    borderRadius: 999,
+                    borderRadius: 7.5,
                     display: "flex",
                     alignItems: "center",
                     padding: 4,
@@ -438,7 +408,7 @@ function KontaktPage() {
                         style={{
                           flex: 1,
                           height: 42,
-                          borderRadius: 999,
+                          borderRadius: 6,
                           border: "none",
                           cursor: "pointer",
                           fontSize: 12.5,
@@ -618,7 +588,7 @@ function KontaktPage() {
         className="relative"
         style={{ background: "#ffffff", padding: "40px 24px 80px" }}
       >
-        {/* Blur overlay background */}
+        {/* Two smaller blur halos positioned in the gaps between text columns */}
         <img
           src={blurImg}
           alt=""
@@ -626,9 +596,24 @@ function KontaktPage() {
           style={{
             position: "absolute",
             top: "50%",
-            left: "50%",
+            left: "28%",
             transform: "translate(-50%, -50%)",
-            width: "min(1200px, 100%)",
+            width: "min(420px, 36%)",
+            height: "auto",
+            zIndex: 0,
+            pointerEvents: "none",
+          }}
+        />
+        <img
+          src={blurImg}
+          alt=""
+          aria-hidden
+          style={{
+            position: "absolute",
+            top: "50%",
+            left: "60%",
+            transform: "translate(-50%, -50%)",
+            width: "min(420px, 36%)",
             height: "auto",
             zIndex: 0,
             pointerEvents: "none",
