@@ -167,6 +167,11 @@ function KontaktPage() {
       </section>
 
       {/* MAP + FORM */}
+      <style>{`
+        @media (min-width: 1024px) {
+          .kontakt-form-card { position: absolute; left: 1000px; top: 12px; z-index: 10; width: 551px; margin-top: 0; }
+        }
+      `}</style>
       <section className="relative mx-auto" style={{ maxWidth: 1440 }}>
         <div className="relative px-6 lg:px-0" style={{ minHeight: 686 }}>
           {/* Map */}
