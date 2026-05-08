@@ -271,7 +271,7 @@ function KontaktPage() {
 
       {/* MAP + FORM */}
       <section
-        className="mx-auto text-xl font-medium"
+        className="mx-auto"
         style={{ width: "100%", maxWidth: 1320, padding: "0 40px 80px" }}
       >
         <div
