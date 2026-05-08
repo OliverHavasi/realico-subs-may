@@ -219,7 +219,7 @@ function KontaktPage() {
 
           {/* z=10 headline */}
           <h1
-            className="kontakt-headline k-headline absolute font-bold text-black"
+            className="kontakt-headline k-headline absolute font-bold text-white"
             style={{
               top: "50%",
               transform: "translateY(-54%)",
