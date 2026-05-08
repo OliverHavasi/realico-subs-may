@@ -409,7 +409,7 @@ function KontaktPage() {
                           transition: "all 0.2s ease",
                           background: active ? "#ffffff" : "transparent",
                           color: active ? "#111111" : "#777777",
-                          fontWeight: active ? 700 : 400,
+                          fontWeight: 500,
                           boxShadow: active ? "0 2px 8px rgba(0,0,0,0.10)" : "none",
                         }}
                       >
