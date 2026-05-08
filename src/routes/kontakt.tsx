@@ -181,13 +181,7 @@ function KontaktPage() {
           </div>
 
           {/* Form card */}
-          <div
-            className="relative mt-6 lg:absolute lg:mt-0"
-            style={{
-              top: 12,
-              left: undefined,
-            }}
-          >
+          <div className="kontakt-form-card relative mt-6 lg:mt-0">
             <div
               className="mx-auto bg-white"
               style={{
@@ -394,7 +388,7 @@ function KontaktPage() {
             {/* Col 1 */}
             <div className="px-12 py-6 md:py-0">
               <img
-                src={(await import("@/assets/brand/realico_logo_full_black.svg")).default}
+                src={logoBlack}
                 alt="Realico"
                 className="mb-6 block h-[35px] w-auto"
               />
