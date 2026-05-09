@@ -192,7 +192,7 @@ function KontaktPage() {
         {/* HERO INNER */}
         <section
           className="relative w-full"
-          style={{ height: 510, background: "#F3C300", overflow: "visible" }}
+          style={{ height: 510, background: "linear-gradient(to bottom, #e0aa03, #f3c300)", overflow: "visible" }}
         >
           {/* z=1 doodles - single image fitted inside hero (scaled +20%) */}
           <img
