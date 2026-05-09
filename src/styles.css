@@ -205,3 +205,27 @@
     -webkit-text-fill-color: transparent;
   }
 }
+
+/* ─── Responsive hero photo fix (tablets/mobile only — desktop unchanged) ─── */
+@media (max-width: 1099px) {
+  .hero-figure,
+  .kontakt-photo-wrap {
+    max-width: 42% !important;
+    height: auto !important;
+    right: 0 !important;
+  }
+  .hero-figure img,
+  .kontakt-photo-wrap img {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+}
+@media (max-width: 767px) {
+  .hero-figure,
+  .kontakt-photo-wrap {
+    max-width: 55% !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    opacity: 0.2 !important;
+  }
+}
