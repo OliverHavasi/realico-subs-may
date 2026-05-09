@@ -33,7 +33,7 @@ export function SiteHeader({ variant = "light" }: { variant?: "light" | "dark" }
             <Link
               key={l.to}
               to={l.to}
-              className={`flex-1 px-6 py-2.5 text-[13px] font-bold rounded-full transition-colors flex items-center justify-center min-h-[42px] [&.active]:min-h-[64px] [&.active]:text-[15px] ${linkBase}`}
+              className={`flex-1 px-6 py-2.5 text-[13px] font-bold rounded-full transition-colors flex items-center justify-center min-h-[42px] ${linkBase}`}
               activeOptions={{ exact: l.to === "/" }}
             >
               {l.type === "image" ? (
